@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Brand;
 use App\Category;
 use App\Sub_Category;
+use App\WeightType;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -22,6 +23,10 @@ class Product extends Model
 
     public function getSubCategory(){
         return $this->belongsTo(Sub_Category::class,'sub_category_id', 'id');
+    }
+
+    public function getWeight(){
+        return $this->belongsTo(WeightType::class,'weight_id', 'id');
     }
 
 }

@@ -42,6 +42,17 @@ class ProductController extends Controller
         return view('admin.product.product-details', $compact);
     }
 
+    public function editForAdmin($id){
+        $product = Product::findOrFail($id);
+        $brands = Brand::all();
+        $categories = Category::all();
+        $sub_categories = Sub_Category::all();
+        $weight_types = WeightType::all();
+        $compact = compact('product', 'brands', 'categories', 'sub_categories', 'weight_types');
+        return view('admin.product.product-edit', $compact);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -78,7 +89,7 @@ class ProductController extends Controller
 
         ]);
 
-        return redirect()->back();
+        return redirect()->route('admin.dashboard.products')->with('add', 'Product Added');
     }
 
     /**
@@ -112,7 +123,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->update([
+            'name' => $request->name,
+            'brand_id' => $request->brand_id,
+            'category_id' => $request->category_id,
+            'sub_category_id' => $request->sub_category_id,
+            'total_quantity' => $request->quantity,
+            'price' => $request->price,
+            'discounted_price' => $request->discounted_price,
+            'weight_id' => $request->weight_id,
+            'weight' => $request->weight,
+            'description' => $request->description,
+            'user_id' => 1,
+            'slug' => str_slug("$request->name", '-')
+        ]);
+
+        return redirect()->route('admin.dashboard.products')->with('update', 'Product Updated');
     }
 
     /**
@@ -123,6 +150,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return redirect()->route('admin.dashboard.products')->with('delete', 'Product Deleted');
     }
 }

@@ -2,6 +2,20 @@
 
 @section('main-content')
 
+    @if (session('update'))
+        <div class="alert alert-success">
+            {{ session('update') }}
+        </div>
+    @elseif (session('add'))
+        <div class="alert alert-success">
+            {{ session('add') }}
+        </div>
+    @elseif (session('delete'))
+        <div class="alert alert-danger">
+            {{ session('delete') }}
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <h2 class="float-left">All Products</h2>

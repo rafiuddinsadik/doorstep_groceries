@@ -32,7 +32,7 @@
             <span>Tables</span></a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <a class="dropdown-item" href="{{route('admin.dashboard.products')}}">Products</a>
-            <a class="dropdown-item" href="#">Brands</a>
+            <a class="dropdown-item" href="{{route('brands.show')}}">Brands</a>
             <a class="dropdown-item" href="#">Categories</a>
             <a class="dropdown-item" href="#">Sub Categories</a>
         </div>

@@ -3,8 +3,12 @@
 @section('main-content')
 
     <div class="m-3">
-        <div><button class="btn btn-outline-success float-right">Edit</button>
-            <button class="btn btn-outline-danger float-right">Delete</button>
+        <div>
+            <a href="{{route('admin.dashboard.products.edit', $product->id)}}" class="btn btn-outline-success float-left">Edit</a>
+            <form action="{{route('admin.dashboard.products.delete', $product->id)}}" method="POST">
+                {{csrf_field()}}
+                <button class="btn btn-outline-danger float-right">Delete</button>
+            </form>
             <br><br>
         </div>
         <div class="row">
@@ -27,6 +31,8 @@
                 <h4>Brand: <span class="badge badge-pill badge-primary">{{$product->getBrand->name}}</span></h4>
                 <h4>Category: <span class="badge badge-pill badge-success">{{$product->getCategory->name}}</span></h4>
                 <h4>Sub-Category: <span class="badge badge-pill badge-dark">{{$product->getSubCategory->name}}</span></h4>
+                <h4>Weight: <span style="padding-right: 10px">{{$product->weight}}</span><span class="badge badge-pill badge-secondary">{{$product->getWeight->name}}</span></h4>
+                <h4>Stock Quantity: <span>{{$product->total_quantity}}pc</span></h4>
                 <br>
                 @php
                  if($product->discounted_price != 0){

@@ -34,9 +34,13 @@ Route::get('admin/dashboard', 'AdminController@show')->name('admin.dashboard');
 Route::get('admin/dashboard/products', 'Website\ProductController@showList')->name('admin.dashboard.products');
 Route::post('admin/dashboard/products', 'Website\ProductController@store')->name('admin.dashboard.store');
 Route::get('admin/dashboard/products/details/{id}', 'Website\ProductController@detailsForAdmin')->name('admin.dashboard.products.details');
+Route::get('admin/dashboard/products/edit/{id}', 'Website\ProductController@editForAdmin')->name('admin.dashboard.products.edit');
+Route::post('admin/dashboard/products/update/{id}', 'Website\ProductController@update')->name('admin.dashboard.products.update');
+Route::post('admin/dashboard/products/delete/{id}', 'Website\ProductController@destroy')->name('admin.dashboard.products.delete');
 Route::get('/ajax-subcat', function (){
     $cat_id = Input::get('cat_id');
     $sub_categories = Sub_Category::where('category_id', '=', $cat_id)->get();
     return response()->json($sub_categories);
 });
+Route::resource('brands', 'BrandController');
 
