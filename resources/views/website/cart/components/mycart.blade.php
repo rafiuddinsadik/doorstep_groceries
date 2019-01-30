@@ -1,4 +1,4 @@
-<div class="wrap cf">
+<div class="container" style="padding-top: 50px; padding-bottom: 10px">
     @if(session()->has('success_message'))
         <div class="alert alert-success" role="alert">
             {{session()->get('success_message')}}
